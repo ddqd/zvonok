@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        def plugins = rootProject.ext.plugins
+        classpath plugins.retrolambda
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+    }
+
+    retrolambda {
+        jvmArgs '-noverify'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+
+    compile dependencies.dagger
+    apt dependencies.daggerCompiler
+
+    testCompile dependencies.dagger
+    testCompile dependencies.daggerCompiler
+    androidTestApt dependencies.daggerCompiler
+
+    provided dependencies.javaxAnnotation
+    compile dependencies.greenDao
+    compile dependencies.annimonStreams
+    compile dependencies.gson
+    compile dependencies.gsonconverter
+    compile dependencies.okHttpLogIntrcpr
+    compile dependencies.retrofit
+    compile dependencies.retrofitRxJava
+    compile dependencies.okhttp
+    compile dependencies.okhttpUrlConn
+
+    testCompile dependencies.mockito
+    testCompile dependencies.robolectric
+    androidTestCompile dependencies.junit
+    testCompile dependencies.junit
+    testCompile dependencies.hamcrest
+
+    compile project(':domain')
+}

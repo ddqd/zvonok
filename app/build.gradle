@@ -1,0 +1,122 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        def plugins = rootProject.ext.plugins
+        classpath plugins.retrolambda
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        def environment = Boolean.valueOf(System.getenv().get("CI"))
+        buildConfigField "boolean", "CI", environment.toString()
+
+        applicationId globalConfiguration.getAt("androidApplicationId")
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+        versionName globalConfiguration.getAt("androidVersionName")
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+
+
+    signingConfigs {
+//        release {
+//            try {
+//                storeFile file("keys.jks")
+//                storePassword KEYSTORE_PASSWORD
+//                keyAlias "alias"
+//                keyPassword KEY_PASSWORD
+//            }
+//            catch (ex) {
+//                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+//            }
+//        }
+    }
+
+    buildTypes {
+        release {
+//            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+//            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        jumboMode true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    retrolambda {
+        jvmArgs '-noverify'
+    }
+
+    configurations {
+        all*.exclude module: 'commons-logging'
+        all*.exclude module: 'httpclient'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    def dependencies = rootProject.ext.dependencies
+
+    compile dependencies.appcompat
+    compile dependencies.design
+    compile dependencies.cardview
+    compile dependencies.recyclerview
+
+    compile dependencies.rxJava
+    compile dependencies.rxAndroid
+    compile dependencies.rxPermission
+
+    compile dependencies.butterknife
+    compile dependencies.picasso
+    compile dependencies.dagger
+    apt dependencies.daggerCompiler
+
+    //enable generate source for robolectric tests
+    testCompile dependencies.dagger
+    testCompile dependencies.daggerCompiler
+    androidTestApt dependencies.daggerCompiler
+    apt dependencies.daggerCompiler
+    provided dependencies.javaxAnnotation
+    compile dependencies.annimonStreams
+
+    // disable leackcanary for unit tests & release build
+    testCompile dependencies.leakCanaryNoOp
+    debugCompile dependencies.leakCanary
+    releaseCompile dependencies.leakCanaryNoOp
+
+    compile project(':domain')
+    compile project(':data')
+}

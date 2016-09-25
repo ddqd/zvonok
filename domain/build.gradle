@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        def plugins = rootProject.ext.plugins
+        classpath plugins.retrolambda
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'me.tatarka.retrolambda'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+retrolambda {
+    jdk System.getenv("JAVA8_HOME")
+    oldJdk System.getenv("JAVA7_HOME")
+    javaVersion JavaVersion.VERSION_1_7
+    incremental true
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+
+    compile dependencies.annimonStreams
+    compile dependencies.rxJava
+    compile dependencies.javaxInject
+
+    testCompile dependencies.hamcrest
+    testCompile dependencies.mockito
+    testCompile dependencies.junit
+
+
+}
+
