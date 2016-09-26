@@ -48,8 +48,6 @@ dependencies {
     provided dependencies.javaxAnnotation
     compile dependencies.greenDao
     compile dependencies.annimonStreams
-    compile dependencies.gson
-    compile dependencies.gsonconverter
     compile dependencies.okHttpLogIntrcpr
     compile dependencies.retrofit
     compile dependencies.retrofitRxJava

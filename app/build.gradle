@@ -48,13 +48,13 @@ android {
 
     buildTypes {
         release {
-//            signingConfig signingConfigs.release
+            buildConfigField "String", "host", "\"http://z.puk/\""
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-//            signingConfig signingConfigs.debug
+            buildConfigField "String", "host", "\"http://dema.im:8044/\""
             minifyEnabled false
         }
     }

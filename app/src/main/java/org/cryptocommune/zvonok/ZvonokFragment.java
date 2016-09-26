@@ -2,7 +2,6 @@ package org.cryptocommune.zvonok;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -71,7 +70,9 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void startRing() {
-        subscription = ringUseCase.execute(new Subscriber<Boolean>() {
+        subscription = ringUseCase
+                .setMessage("imvedroid")
+                .execute(new Subscriber<Void>() {
             @Override
             public void onCompleted() {
 
@@ -83,7 +84,7 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
             }
 
             @Override
-            public void onNext(Boolean aBoolean) {
+            public void onNext(Void aBoolean) {
                 Snackbar.make(getView(), "succes " + aBoolean, Snackbar.LENGTH_LONG).show();
             }
         });

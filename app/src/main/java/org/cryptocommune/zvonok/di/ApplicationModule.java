@@ -7,6 +7,7 @@ import com.cryptocommune.domain.schedulers.SubscribeOn;
 
 import org.cryptocommune.zvonok.App;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -38,5 +39,11 @@ public class ApplicationModule {
     @Provides
     ObserveOn provideObserveOn() {
         return (() -> AndroidSchedulers.mainThread());
+    }
+
+    @Provides
+    @Named("host")
+    String provideHostName() {
+        return application.getHost();
     }
 }

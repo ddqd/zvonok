@@ -24,7 +24,7 @@ public class ZvonokNetworkRepository implements ZvonokRepository {
     }
 
     @Override
-    public Observable<Boolean> ring() {
-        return restApi.ring();
+    public Observable<Void> ring(final String message) {
+        return restApi.ring(message);
     }
 }

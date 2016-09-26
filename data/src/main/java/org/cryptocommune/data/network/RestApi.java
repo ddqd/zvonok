@@ -17,7 +17,7 @@ public class RestApi {
         this.endpoints = endpoints;
     }
 
-    public Observable<Boolean> ring() {
-        return endpoints.ring();
+    public Observable<Void> ring(final String message) {
+        return endpoints.ring(message);
     }
 }

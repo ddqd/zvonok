@@ -34,4 +34,8 @@ public class App extends Application {
     public ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
+
+    public String getHost() {
+        return BuildConfig.host;
+    }
 }
