@@ -1,7 +1,7 @@
 package org.cryptocommune.zvonok;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import org.cryptocommune.zvonok.di.ApplicationComponent;
 
@@ -9,7 +9,7 @@ import org.cryptocommune.zvonok.di.ApplicationComponent;
  * Created by Dema on 24.09.2016.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends RxAppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

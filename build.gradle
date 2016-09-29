@@ -52,6 +52,7 @@ allprojects {
         rxJavaVersion = '1.0.14'
         rxAndroidVersion = '1.0.1'
         rxPermissionVersion = '0.7.0'
+        rxLifecycleVersion = '0.8.0'
 
         mockitoVersion = '1.10.19'
         hamcrestVersion = '1.1'
@@ -91,6 +92,8 @@ allprojects {
 
                 rxJava             : "io.reactivex:rxjava:${rxJavaVersion}",
                 rxAndroid          : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                rxLifecycle        : "com.trello:rxlifecycle-android:${rxLifecycleVersion}",
+                rxLifecycleComponents : "com.trello:rxlifecycle-components:${rxLifecycleVersion}",
 
                 mockito            : "org.mockito:mockito-core:${mockitoVersion}",
                 hamcrest           : "org.hamcrest:hamcrest-library:${hamcrestVersion}",

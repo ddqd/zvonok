@@ -10,10 +10,14 @@ import android.view.ViewGroup;
 
 import com.cryptocommune.domain.usecase.RingUseCase;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.subscriptions.Subscriptions;
 
 /**
@@ -23,6 +27,8 @@ import rx.subscriptions.Subscriptions;
 public class ZvonokFragment extends BaseFragment implements View.OnClickListener {
 
     public static final String TAG = ZvonokFragment.class.getName();
+
+    public static final String RING_BUTTON_ENABLED = "RING_BUTTON_ENABLED";
 
     @Inject
     RingUseCase ringUseCase;
@@ -49,9 +55,16 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        View button = view.findViewById(R.id.b_ring);
-        button.setOnClickListener(this);
+        View ringButton = view.findViewById(R.id.b_ring);
+        ringButton.setOnClickListener(this);
+        if (savedInstanceState != null) {
+            boolean isEnabled = savedInstanceState.getBoolean(RING_BUTTON_ENABLED, true);
+            if (!isEnabled) {
+                startDisableRingButton();
+            }
+        }
     }
+
 
     @Override
     public void onClick(View view) {
@@ -73,20 +86,44 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
         subscription = ringUseCase
                 .setMessage("imvedroid")
                 .execute(new Subscriber<Void>() {
-            @Override
-            public void onCompleted() {
+                    @Override
+                    public void onCompleted() {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Snackbar.make(getView(), "error: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Snackbar.make(getView(), "error: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
 
-            @Override
-            public void onNext(Void v) {
-                Snackbar.make(getView(), getString(R.string.ring_ring), Snackbar.LENGTH_LONG).show();
-            }
-        });
+                    @Override
+                    public void onNext(Void v) {
+                        Snackbar.make(getView(), getString(R.string.ring_ring), Snackbar.LENGTH_LONG).show();
+                        startDisableRingButton();
+                    }
+
+                });
+    }
+
+
+    private void startDisableRingButton() {
+        setRingButtonEnabled(false);
+        Observable.timer(5, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(t -> {
+                    setRingButtonEnabled(true);
+                });
+    }
+
+    private void setRingButtonEnabled(boolean enabled) {
+        getView().findViewById(R.id.b_ring).setEnabled(enabled);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        boolean value = getView().findViewById(R.id.b_ring).isEnabled();
+        outState.putBoolean(RING_BUTTON_ENABLED, value);
+        super.onSaveInstanceState(outState);
     }
 }
