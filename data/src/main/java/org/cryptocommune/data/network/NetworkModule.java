@@ -19,17 +19,19 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 @Module
 public class NetworkModule {
 
-    private static OkHttpClient provideOkHttpClient() {
+    private static OkHttpClient provideOkHttpClient(boolean isLogEnabled) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.addInterceptor(new HttpLoggingInterceptor(message -> Log.d("okhttp", message)).setLevel(HttpLoggingInterceptor.Level.BODY));
+        if (isLogEnabled) {
+            builder.addInterceptor(new HttpLoggingInterceptor(message -> Log.d("okhttp", message)).setLevel(HttpLoggingInterceptor.Level.BODY));
+        }
         return builder.build();
     }
 
     @Provides
-    Endpoints provideEndpoints(final @Named("host") String host) {
+    Endpoints provideEndpoints(final @Named("host") String host, @Named("isDebug") boolean isDebug) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(host)
-                .client(provideOkHttpClient())
+                .client(provideOkHttpClient(isDebug))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit.create(Endpoints.class);

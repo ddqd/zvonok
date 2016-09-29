@@ -6,8 +6,6 @@ import com.cryptocommune.domain.repository.ZvonokRepository;
 import com.cryptocommune.domain.schedulers.ObserveOn;
 import com.cryptocommune.domain.schedulers.SubscribeOn;
 
-import org.cryptocommune.data.network.RestApi;
-import org.cryptocommune.zvonok.BaseActivity;
 import org.cryptocommune.zvonok.MainActivity;
 import org.cryptocommune.zvonok.ZvonokFragment;
 

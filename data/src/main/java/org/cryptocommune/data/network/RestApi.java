@@ -1,8 +1,9 @@
 package org.cryptocommune.data.network;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import rx.Observable;
 
 /**
@@ -13,11 +14,11 @@ import rx.Observable;
 public class RestApi {
     private final Endpoints endpoints;
 
-    public RestApi(Endpoints endpoints) {
+    RestApi(Endpoints endpoints) {
         this.endpoints = endpoints;
     }
 
     public Observable<Void> ring(final String message) {
-        return endpoints.ring(message);
+        return endpoints.ring(RequestBody.create(MediaType.parse("text/plain"), message));
     }
 }

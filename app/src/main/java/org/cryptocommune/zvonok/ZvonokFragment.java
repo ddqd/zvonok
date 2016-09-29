@@ -80,12 +80,12 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
 
             @Override
             public void onError(Throwable e) {
-                Snackbar.make(getView(), "error " + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getView(), "error: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
             }
 
             @Override
-            public void onNext(Void aBoolean) {
-                Snackbar.make(getView(), "succes " + aBoolean, Snackbar.LENGTH_LONG).show();
+            public void onNext(Void v) {
+                Snackbar.make(getView(), getString(R.string.ring_ring), Snackbar.LENGTH_LONG).show();
             }
         });
     }

@@ -46,4 +46,10 @@ public class ApplicationModule {
     String provideHostName() {
         return application.getHost();
     }
+
+    @Provides
+    @Named("isDebug")
+    boolean provideIsDebug() {
+        return application.isDebug();
+    }
 }

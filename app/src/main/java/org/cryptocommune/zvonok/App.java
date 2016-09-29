@@ -17,17 +17,17 @@ import org.cryptocommune.zvonok.di.RepositoryModule;
 public class App extends Application {
 
     private ApplicationComponent applicationComponent;
+    private boolean B;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        boolean isCI = BuildConfig.CI;
-        if (!isCI) {
+        if (!isCI()) {
             LeakCanary.install(this);
         }
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .repositoryModule(new RepositoryModule(isCI))
+                .repositoryModule(new RepositoryModule(isCI()))
                 .build();
     }
 
@@ -37,5 +37,13 @@ public class App extends Application {
 
     public String getHost() {
         return BuildConfig.host;
+    }
+
+    public boolean isCI() {
+        return BuildConfig.CI;
+    }
+
+    public boolean isDebug() {
+        return BuildConfig.DEBUG;
     }
 }
