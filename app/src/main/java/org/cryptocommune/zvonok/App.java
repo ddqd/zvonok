@@ -17,7 +17,6 @@ import org.cryptocommune.zvonok.di.RepositoryModule;
 public class App extends Application {
 
     private ApplicationComponent applicationComponent;
-    private boolean B;
 
     @Override
     public void onCreate() {

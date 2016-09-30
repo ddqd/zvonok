@@ -14,14 +14,16 @@ import com.trello.rxlifecycle.components.support.RxFragment;
 public class BaseFragment extends RxFragment {
 
     protected BaseActivity getBaseActivity() {
-        return (BaseActivity) getActivity();
+        if (getActivity() instanceof BaseActivity)
+            return (BaseActivity) getActivity();
+        return null;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        if (toolbar != null) {
+        if (toolbar != null && getBaseActivity() != null) {
             getBaseActivity().setSupportActionBar(toolbar);
         }
     }

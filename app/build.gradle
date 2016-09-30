@@ -118,6 +118,12 @@ dependencies {
     testCompile dependencies.leakCanaryNoOp
     debugCompile dependencies.leakCanary
     releaseCompile dependencies.leakCanaryNoOp
+    testCompile dependencies.mockito
+    testCompile dependencies.robolectric
+    androidTestCompile dependencies.junit
+    testCompile dependencies.junit
+    testCompile dependencies.hamcrest
+    testCompile 'org.robolectric:shadows-support-v4:3.0'
 
     compile project(':domain')
     compile project(':data')

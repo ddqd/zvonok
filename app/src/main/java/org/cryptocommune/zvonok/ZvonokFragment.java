@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.cryptocommune.domain.usecase.RingUseCase;
 
+import org.cryptocommune.zvonok.di.ApplicationComponent;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -43,7 +45,10 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getBaseActivity().getApplicationComponent().inject(this);
+        ApplicationComponent component = getBaseActivity() != null ? getBaseActivity().getApplicationComponent() : null;
+        if (component != null) {
+            component.inject(this);
+        }
     }
 
     @Nullable
