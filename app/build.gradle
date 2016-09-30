@@ -30,27 +30,30 @@ android {
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
-
-
     signingConfigs {
-//        release {
-//            try {
-//                storeFile file("keys.jks")
-//                storePassword KEYSTORE_PASSWORD
-//                keyAlias "alias"
-//                keyPassword KEY_PASSWORD
-//            }
-//            catch (ex) {
-//                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
-//            }
-//        }
+        release {
+            try {
+                storeFile file(KEYSTORE_FILE)
+                storePassword KEYSTORE_PASSWORD
+                keyAlias KEYSTORE_ALIAS
+                keyPassword KEY_PASSWORD
+            }
+            catch (ex) {
+                throw new InvalidUserDataException("You should define keys in gradle.properties.")
+            }
+        }
     }
 
     buildTypes {
         release {
-            buildConfigField "String", "host", "\"http://z.puk/\""
             minifyEnabled true
+            shrinkResources true
+            debuggable false
+            jniDebuggable false
+            zipAlignEnabled true
+            buildConfigField "String", "host", "\"http://z.puk/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
 
         debug {
