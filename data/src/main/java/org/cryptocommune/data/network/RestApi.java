@@ -4,6 +4,8 @@ import javax.inject.Singleton;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 import rx.Observable;
 
 /**
@@ -18,7 +20,8 @@ public class RestApi {
         this.endpoints = endpoints;
     }
 
-    public Observable<Void> ring(final String message) {
-        return endpoints.ring(RequestBody.create(MediaType.parse("text/plain"), message));
+    public Observable<Boolean> ring(final String message) {
+        Observable<Response<ResponseBody>> res = endpoints.ring(RequestBody.create(MediaType.parse("text/plain"), message));
+        return res.map(r -> r.code() == 200);
     }
 }

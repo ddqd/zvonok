@@ -12,7 +12,7 @@ import rx.Observable;
  * Created by Dema on 24.09.2016.
  */
 
-public class RingUseCase extends BaseUseCase<Void> {
+public class RingUseCase extends BaseUseCase<Boolean> {
 
     private ZvonokRepository zvonokRepository;
     private String message;
@@ -29,7 +29,7 @@ public class RingUseCase extends BaseUseCase<Void> {
     }
 
     @Override
-    protected Observable<Void> buildUseCaseObservable() {
+    protected Observable<Boolean> buildUseCaseObservable() {
         return zvonokRepository.ring(message == null ? "" : message);
     }
 }

@@ -7,5 +7,5 @@ import rx.Observable;
  */
 
 public interface ZvonokRepository {
-    Observable<Void> ring(final String message);
+    Observable<Boolean> ring(final String message);
 }

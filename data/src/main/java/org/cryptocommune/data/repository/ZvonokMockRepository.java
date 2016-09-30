@@ -18,7 +18,9 @@ public class ZvonokMockRepository implements ZvonokRepository {
     public ZvonokMockRepository() {}
 
     @Override
-    public Observable<Void> ring(String message) {
-        return Observable.just(null);
+    public Observable<Boolean> ring(String message) {
+        if ("test".equals(message))
+            return Observable.just(true);
+        return Observable.just(false);
     }
 }

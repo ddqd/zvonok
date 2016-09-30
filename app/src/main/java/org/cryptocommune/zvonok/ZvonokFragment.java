@@ -85,7 +85,7 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
     private void startRing() {
         subscription = ringUseCase
                 .setMessage("imvedroid")
-                .execute(new Subscriber<Void>() {
+                .execute(new Subscriber<Boolean>() {
                     @Override
                     public void onCompleted() {
 
@@ -97,7 +97,7 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
                     }
 
                     @Override
-                    public void onNext(Void v) {
+                    public void onNext(Boolean result) {
                         Snackbar.make(getView(), getString(R.string.ring_ring), Snackbar.LENGTH_LONG).show();
                         startDisableRingButton();
                     }

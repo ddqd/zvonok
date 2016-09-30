@@ -1,6 +1,8 @@
 package org.cryptocommune.data.network;
 
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -14,5 +16,5 @@ public interface Endpoints {
     })
     @Multipart
     @POST("doorbell")
-    Observable<Void> ring(@Part("text") final RequestBody text);
+    Observable<Response<ResponseBody>> ring(@Part("text") final RequestBody text);
 }

@@ -46,7 +46,6 @@ dependencies {
     androidTestApt dependencies.daggerCompiler
 
     provided dependencies.javaxAnnotation
-    compile dependencies.greenDao
     compile dependencies.annimonStreams
     compile dependencies.okHttpLogIntrcpr
     compile dependencies.retrofit
