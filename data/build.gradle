@@ -46,18 +46,15 @@ dependencies {
     androidTestApt dependencies.daggerCompiler
 
     provided dependencies.javaxAnnotation
-    compile dependencies.annimonStreams
     compile dependencies.okHttpLogIntrcpr
     compile dependencies.retrofit
     compile dependencies.retrofitRxJava
     compile dependencies.okhttp
     compile dependencies.okhttpUrlConn
 
-    testCompile dependencies.mockito
     testCompile dependencies.robolectric
     androidTestCompile dependencies.junit
     testCompile dependencies.junit
-    testCompile dependencies.hamcrest
 
     compile project(':domain')
 }

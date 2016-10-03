@@ -95,17 +95,12 @@ dependencies {
 
     compile dependencies.appcompat
     compile dependencies.design
-    compile dependencies.cardview
-    compile dependencies.recyclerview
 
     compile dependencies.rxJava
     compile dependencies.rxAndroid
-    compile dependencies.rxPermission
     compile dependencies.rxLifecycle
     compile dependencies.rxLifecycleComponents
 
-    compile dependencies.butterknife
-    compile dependencies.picasso
     compile dependencies.dagger
     apt dependencies.daggerCompiler
 
@@ -121,11 +116,9 @@ dependencies {
     testCompile dependencies.leakCanaryNoOp
     debugCompile dependencies.leakCanary
     releaseCompile dependencies.leakCanaryNoOp
-    testCompile dependencies.mockito
     testCompile dependencies.robolectric
     androidTestCompile dependencies.junit
     testCompile dependencies.junit
-    testCompile dependencies.hamcrest
     testCompile 'org.robolectric:shadows-support-v4:3.0'
 
     compile project(':domain')

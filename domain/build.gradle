@@ -25,11 +25,9 @@ retrolambda {
 dependencies {
     def dependencies = rootProject.ext.dependencies
 
-    compile dependencies.annimonStreams
     compile dependencies.rxJava
     compile dependencies.javaxInject
 
-    testCompile dependencies.hamcrest
     testCompile dependencies.mockito
     testCompile dependencies.junit
 
