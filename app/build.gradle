@@ -39,7 +39,7 @@ android {
                 keyPassword KEY_PASSWORD
             }
             catch (ex) {
-                throw new InvalidUserDataException("You should define keys in gradle.properties.")
+                logger.error(ex.message)
             }
         }
     }
@@ -53,7 +53,11 @@ android {
             zipAlignEnabled true
             buildConfigField "String", "host", "\"http://z.puk/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+
+            String isTravisBuild = System.getenv('TRAVIS')
+            if (!Boolean.valueOf(isTravisBuild)) {
+                signingConfig signingConfigs.release
+            }
         }
 
         debug {
