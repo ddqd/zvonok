@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ddqd/zvonok.svg?branch=master)](https://travis-ci.org/ddqd/zvonok)
+
 ###Zvonok android app
 
 
