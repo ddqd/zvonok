@@ -44,6 +44,7 @@ task findbugs(type: FindBugs, dependsOn: "assembleDebug") {
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
+    ignoreFailures = true
 
     reports {
         xml.enabled = false
@@ -68,6 +69,9 @@ task pmd(type: Pmd) {
     include '**/*.java'
     exclude '**/gen/**'
 
+    ignoreFailures = true
+
+
     reports {
         xml.enabled = false
         html.enabled = true
@@ -82,8 +86,8 @@ task pmd(type: Pmd) {
 
 android {
     lintOptions {
-        abortOnError true
-        xmlReport false
+        abortOnError false
+        xmlReport true
         htmlReport true
         lintConfig file("$configDir/lint/lint.xml")
         htmlOutput file("$reportsDir/lint/lint-result.html")
