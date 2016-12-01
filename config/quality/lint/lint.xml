@@ -72,7 +72,10 @@
     <issue id="InnerclassSeparator" severity="ignore" />
     <issue id="Instantiatable" severity="ignore" />
     <issue id="InvalidId" severity="ignore" />
-    <issue id="InvalidPackage" severity="ignore" />
+    <issue id="InvalidPackage" severity="error">
+        <ignore regexp=".*okio.*" />
+        <ignore regexp=".*retrofit.*" />
+    </issue>
     <issue id="JavascriptInterface" severity="ignore" />
     <issue id="LabelFor" severity="ignore" />
     <issue id="LibraryCustomView" severity="ignore" />

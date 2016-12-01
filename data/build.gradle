@@ -11,6 +11,7 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'android-apt'
 apply plugin: 'me.tatarka.retrolambda'
+apply from: '../config/quality.gradle'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")

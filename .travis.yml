@@ -6,7 +6,6 @@ android:
     - platform-tools
     - platform-tools-25
     - tools
-    - build-tools-25.0.0
     - build-tools-25.0.1
     - android-25
     - extra-android-m2repository
@@ -29,4 +28,4 @@ before_install:
   - chmod +x gradlew
 
 script:
-   - ./gradlew test check connectedAndroidTest
+   - ./gradlew clean assemble test check connectedAndroidTest --info --stacktrace
