@@ -121,6 +121,15 @@ allprojects {
                 retrolambda: "me.tatarka:gradle-retrolambda:${retroLambdaVersion}"
         ]
     }
+    afterEvaluate {
+        project ->
+            def lib = project.plugins.hasPlugin('com.android.library')
+            def app = project.plugins.hasPlugin('com.android.application')
+            if (lib||app) {
+                project.apply from: "${project.rootProject.rootDir}/quality/quality.gradle"
+            }
+    }
+
 }
 
 task clean(type: Delete) {
