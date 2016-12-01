@@ -28,7 +28,7 @@ before_install:
   - chmod +x gradlew
 
 script:
-  - ./gradlew clean assembleDebug check connectedAndroidTest --info
+  - ./gradlew clean assembleDebug check connectedAndroidTest
 env:
   global:
     - GRADLE_OPTS="-Xms128m"
