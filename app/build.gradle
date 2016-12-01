@@ -28,7 +28,6 @@ android {
         targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
         versionCode globalConfiguration.getAt("androidVersionCode")
         versionName globalConfiguration.getAt("androidVersionName")
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     signingConfigs {
@@ -124,7 +123,7 @@ dependencies {
     testCompile dependencies.robolectric
     androidTestCompile dependencies.junit
     testCompile dependencies.junit
-    testCompile 'org.robolectric:shadows-support-v4:3.0'
+    testCompile 'org.robolectric:shadows-support-v4:3.1.4'
 
     compile project(':domain')
     compile project(':data')

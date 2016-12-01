@@ -12,7 +12,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-import org.robolectric.shadows.ShadowLooper;
 import org.robolectric.shadows.support.v4.SupportFragmentTestUtil;
 
 /**
@@ -20,14 +19,14 @@ import org.robolectric.shadows.support.v4.SupportFragmentTestUtil;
  */
 
 @RunWith(RobolectricTestRunner.class)
-@Config(application = TestApp.class, constants = BuildConfig.class, sdk = 21)
+@Config(application = TestZvonokApplication.class, constants = BuildConfig.class, sdk = 21)
 public class ZvonokTest {
 
-    TestApp app;
+    private TestZvonokApplication app;
 
     @Before
     public void prepareTest() throws Exception {
-        app = (TestApp) RuntimeEnvironment.application;
+        app = (TestZvonokApplication) RuntimeEnvironment.application;
     }
 
     @Test
@@ -48,8 +47,7 @@ public class ZvonokTest {
         app.getApplicationComponent().inject(zvonokFragment);
         SupportFragmentTestUtil.startVisibleFragment(zvonokFragment);
         View ringButton = zvonokFragment.getView().findViewById(R.id.b_ring);
-        ringButton.performClick();
-        ringButton.postDelayed(() -> Assert.assertTrue(ringButton.isEnabled()), 10000);
-        ShadowLooper.runUiThreadTasksIncludingDelayedTasks();
+        Assert.assertTrue(ringButton.isEnabled());
+        Assert.assertTrue(ringButton.performClick());
     }
 }

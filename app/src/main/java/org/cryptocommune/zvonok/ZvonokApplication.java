@@ -14,7 +14,7 @@ import org.cryptocommune.zvonok.di.RepositoryModule;
  * Created by Dema on 24.09.2016.
  */
 
-public class App extends Application {
+public class ZvonokApplication extends Application {
 
     private ApplicationComponent applicationComponent;
 

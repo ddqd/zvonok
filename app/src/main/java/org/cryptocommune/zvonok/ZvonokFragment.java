@@ -83,8 +83,9 @@ public class ZvonokFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (subscription != null)
+        if (subscription != null) {
             subscription.unsubscribe();
+        }
     }
 
     private void startRing() {

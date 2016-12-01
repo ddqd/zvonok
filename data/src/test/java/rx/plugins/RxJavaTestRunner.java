@@ -1,12 +1,9 @@
-package org.cryptocommune.data;
+package rx.plugins;
 
 import org.junit.runners.model.InitializationError;
 import org.robolectric.RobolectricTestRunner;
 
 import rx.Scheduler;
-import rx.plugins.RxJavaPlugins;
-import rx.plugins.RxJavaSchedulersHook;
-import rx.plugins.RxJavaTestPlugins;
 import rx.schedulers.Schedulers;
 
 /**

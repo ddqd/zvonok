@@ -30,6 +30,8 @@
             <Bug code="IJU" />
         </Not>
     </Match>
-
-
+    <Match>
+        <Bug code="UPM" />
+        <Class name="~.*\$\$Lambda\$.*"/>
+    </Match>
 </FindBugsFilter>
