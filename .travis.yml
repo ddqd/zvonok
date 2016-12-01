@@ -28,4 +28,4 @@ before_install:
   - chmod +x gradlew
 
 script:
-   - ./gradlew clean assemble test check connectedAndroidTest --info --stacktrace
+   - ./gradlew clean assemble check connectedAndroidTest --info --stacktrace
