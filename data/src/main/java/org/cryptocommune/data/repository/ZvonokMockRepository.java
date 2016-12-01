@@ -15,12 +15,15 @@ import rx.Observable;
 public class ZvonokMockRepository implements ZvonokRepository {
 
     @Inject
-    public ZvonokMockRepository() {}
+    public ZvonokMockRepository() {
+    }
 
     @Override
-    public Observable<Boolean> ring(String message) {
-        if ("test".equals(message))
+    public Observable<Boolean> ring(final String message) {
+        if ("test".equals(message)) {
             return Observable.just(true);
-        return Observable.just(false);
+        } else {
+            return Observable.just(false);
+        }
     }
 }
