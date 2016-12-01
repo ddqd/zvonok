@@ -17,6 +17,6 @@ public class BaseActivity extends RxAppCompatActivity {
     }
 
     protected ApplicationComponent getApplicationComponent() {
-        return ((App) getApplication()).getApplicationComponent();
+        return ((ZvonokApplication) getApplication()).getApplicationComponent();
     }
 }

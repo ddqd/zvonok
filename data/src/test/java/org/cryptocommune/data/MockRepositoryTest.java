@@ -8,6 +8,7 @@ import org.robolectric.annotation.Config;
 import java.util.Arrays;
 
 import rx.observers.TestSubscriber;
+import rx.plugins.RxJavaTestRunner;
 
 @RunWith(RxJavaTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)

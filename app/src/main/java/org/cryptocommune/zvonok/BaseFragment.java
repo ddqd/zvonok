@@ -14,9 +14,11 @@ import com.trello.rxlifecycle.components.support.RxFragment;
 public class BaseFragment extends RxFragment {
 
     protected BaseActivity getBaseActivity() {
-        if (getActivity() instanceof BaseActivity)
+        if (getActivity() instanceof BaseActivity) {
             return (BaseActivity) getActivity();
-        return null;
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.content.Context;
 import com.cryptocommune.domain.schedulers.ObserveOn;
 import com.cryptocommune.domain.schedulers.SubscribeOn;
 
-import org.cryptocommune.zvonok.App;
+import org.cryptocommune.zvonok.ZvonokApplication;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -19,9 +19,9 @@ import rx.schedulers.Schedulers;
 @Module
 public class ApplicationModule {
 
-    App application;
+    ZvonokApplication application;
 
-    public ApplicationModule(App application) {
+    public ApplicationModule(ZvonokApplication application) {
         this.application = application;
     }
 
