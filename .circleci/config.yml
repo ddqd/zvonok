@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/android:api-30-alpha
+        auth:
+          username: $DOCKER_HUB_NAME
+          password: $DOCKER_HUB_PASS
     steps:
       - run:
           name: Build debug APK
