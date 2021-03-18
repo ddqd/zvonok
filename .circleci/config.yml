@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/android:api-30-alpha
+      - image: circleci/android:api-29
         auth:
           username: $DOCKER_HUB_NAME
           password: $DOCKER_HUB_PASS
