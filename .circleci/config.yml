@@ -1,13 +1,10 @@
-version: 2.1
-
-orbs:
-  android: circleci/android@0.2.1
-
+version: 2
 jobs:
-  build:
-    executor: android/android
-
+  test:
+    docker:
+      - image: circleci/android:api-28-alpha
     steps:
-      - checkout
       - run:
-          command: chmod +x gradlew && ./gradlew build
+          name: Build debug APK
+          command: |
+            ./gradlew :app:assembleDebug
