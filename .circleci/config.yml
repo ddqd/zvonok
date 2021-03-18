@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/app
     docker:
       - image: circleci/android:api-29
         auth:
